@@ -25,7 +25,6 @@ for doc in tqdm(raw["data"]):
             })
 
 df = pd.DataFrame(examples)
-_, test_df = train_test_split(df, test_size=0.05, random_state=42)
+train_df, test_df = train_test_split(df, test_size=0.05)
+train_df.to_json("cuad_train_5pct.json", orient="records", lines=True)
 test_df.to_json("cuad_test_5pct.json", orient="records", lines=True)
-
-print(f"Saved test set with {len(test_df)} samples to 'cuad_test_5pct.json'")
